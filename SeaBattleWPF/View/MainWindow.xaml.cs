@@ -23,6 +23,19 @@ namespace SeaBattleWPF
         public MainWindow()
         {
             InitializeComponent();
+            //for (int i = 0; i < 10; i++)
+            //{
+                Button button = new Button();
+                GridField.Children.Add(button);
+            Grid.SetRow(button, 2);
+            Grid.SetColumn(button, 2);
+           // }
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("++++");
         }
     }
 }

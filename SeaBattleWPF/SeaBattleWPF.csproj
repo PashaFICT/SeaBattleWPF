@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,7 +63,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="BotStrategy\BotStrategy.cs" />
+    <Compile Include="ViewModel\BuildGame.cs" />
+    <Compile Include="Model\ConfigGame.cs" />
+    <Compile Include="Model\Field.cs" />
+    <Compile Include="Model\Game.cs" />
+    <Compile Include="ViewModel\GameProcess.cs" />
+    <Compile Include="ViewModel\IBuildGame.cs" />
+    <Compile Include="Exceptions\InputInvalidParametrException.cs" />
+    <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\Cell.cs" />
+    <Compile Include="Model\NextStep.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="BotStrategy\RandomShot.cs" />
+    <Compile Include="Model\Ship.cs" />
+    <Compile Include="BotStrategy\ShotNearCell.cs" />
+    <Compile Include="BotStrategy\ShotTheTarget.cs" />
+    <Compile Include="ViewModel\Validation.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -94,5 +111,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
