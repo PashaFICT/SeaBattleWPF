@@ -79,6 +79,8 @@
     <Compile Include="Model\Ship.cs" />
     <Compile Include="BotStrategy\ShotNearCell.cs" />
     <Compile Include="BotStrategy\ShotTheTarget.cs" />
+    <Compile Include="ViewModel\MainVM.cs" />
+    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Validation.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

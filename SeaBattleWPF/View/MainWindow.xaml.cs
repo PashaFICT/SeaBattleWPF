@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SeaBattleWPF.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,14 +24,33 @@ namespace SeaBattleWPF
         public MainWindow()
         {
             InitializeComponent();
-            //for (int i = 0; i < 10; i++)
-            //{
-                Button button = new Button();
-                GridField.Children.Add(button);
-            Grid.SetRow(button, 2);
-            Grid.SetColumn(button, 2);
-           // }
+            int count = 1;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Button button = new Button() {Tag=count };
+                    // Создание привязки
+                    CommandBinding bind = new CommandBinding(ApplicationCommands.New);
 
+                    // Присоединение обработчика событий
+                    bind.Executed += Go;
+
+                    // Регистрация привязки
+                    this.CommandBindings.Add(bind);
+                    // button.Command = 
+                    //button.SetBinding(Button.CommandProperty, new Binding("Start"));
+                    GridField.Children.Add(button);
+                    Grid.SetRow(button, i);
+                    Grid.SetColumn(button, j);
+                    count++;
+                }
+            }
+
+        }
+        private void Go(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Go");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
