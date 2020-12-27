@@ -9,19 +9,8 @@ namespace SeaBattleWPF.ViewModel
 {
     public class RelayCommand : ICommand
     {
-        public delegate void ICommandOnExecute();
-        public delegate bool ICommandOnCanExecute();
-
-        private ICommandOnExecute _execute;
-        private ICommandOnCanExecute _canExecute;
-
-        public RelayCommand(ICommandOnExecute onExecuteMethod, ICommandOnCanExecute onCanExecuteMethod = null)
-        {
-            _execute = onExecuteMethod;
-            _canExecute = onCanExecuteMethod;
-        }
-
-        #region ICommand Members
+        private Action<object> execute;
+        private Func<object, bool> canExecute;
 
         public event EventHandler CanExecuteChanged
         {
@@ -29,16 +18,20 @@ namespace SeaBattleWPF.ViewModel
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        {
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
+
         public bool CanExecute(object parameter)
         {
-            return _canExecute?.Invoke() ?? true;
+            return this.canExecute == null || this.canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            _execute?.Invoke();
+            this.execute(parameter);
         }
-
-        #endregion
     }
 }

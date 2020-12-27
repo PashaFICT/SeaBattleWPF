@@ -8,44 +8,58 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SeaBattleWPF.ViewModel
 {
    public class MainVM : INotifyPropertyChanged
     {
+        int count = 0;
         public MainVM()
         {
         }
-        //public void Go(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    MessageBox.Show("+");
-        //}
+
+        private RelayCommand addCommand;
         public RelayCommand Start
         {
             get
             {
-                return new RelayCommand(() =>
-                {
-                    try
-                    {
-                        MessageBox.Show("+");
-                       // MessageBox.Show(Button.TagProperty.Name);
-                    }
-                    catch { }
-                });
+                return addCommand ??
+                  (addCommand = new RelayCommand(obj =>
+                  {
+
+                      MessageBox.Show("Start");
+                  }));
             }
 
         }
-        private int selectedButton;
-        public int SelectedButton
+
+
+        private RelayCommand removeCommand;
+        public RelayCommand RemoveCommand
         {
-            get { return selectedButton; }
-            set
+            get
             {
-                selectedButton = value;
-                OnPropertyChanged("SelectedButton");
+                return removeCommand ??
+                  (removeCommand = new RelayCommand(obj =>
+                  {
+                      int num = Convert.ToInt32(obj);
+                      MessageBox.Show(num.ToString());
+                  }
+                 ));
             }
         }
+
+        public int SelectedPhone
+        {
+            get { return count; }
+            set
+            {
+                OnPropertyChanged("SelectedPhone");
+            }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

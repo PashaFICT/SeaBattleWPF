@@ -24,22 +24,16 @@ namespace SeaBattleWPF
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainVM();
             int count = 1;
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    Button button = new Button() {Tag=count };
-                    // Создание привязки
-                    CommandBinding bind = new CommandBinding(ApplicationCommands.New);
-
-                    // Присоединение обработчика событий
-                    bind.Executed += Go;
-
-                    // Регистрация привязки
-                    this.CommandBindings.Add(bind);
-                    // button.Command = 
-                    //button.SetBinding(Button.CommandProperty, new Binding("Start"));
+                    Button button = new Button() {};
+                    button.SetBinding(Button.CommandProperty, new Binding("RemoveCommand"));
+                    button.CommandParameter = count.ToString();
+                    //button.Content = "+";
                     GridField.Children.Add(button);
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);
@@ -47,10 +41,6 @@ namespace SeaBattleWPF
                 }
             }
 
-        }
-        private void Go(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Go");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
