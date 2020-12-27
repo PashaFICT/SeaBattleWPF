@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SeaBattleWPF.ViewModel;
 
-namespace SeaBattleWPF
+namespace SeaBattleWPF.Model
 {
     public class Game
     {

@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SeaBattleWPF.Model;
+using SeaBattleWPF.BotStrategys;
 
-namespace SeaBattleWPF
+namespace SeaBattleWPF.ViewModel
 {
     public class GameProcess
     {
@@ -19,8 +21,8 @@ namespace SeaBattleWPF
         public Game StartGame(Game game)
         {
             AddRandomShip(game.PlayerSecond);
-            game.PlayerFirst.FieldView(game.PlayerFirst);
-            game.PlayerSecond.FieldView(game.PlayerSecond, false, false);
+            //game.PlayerFirst.FieldView(game.PlayerFirst);
+            //game.PlayerSecond.FieldView(game.PlayerSecond, false, false);
 
             return game;
         }
@@ -53,7 +55,7 @@ namespace SeaBattleWPF
                 player2.Ships.Add(_buildGame.BuildShipOfFour());
             }
             Game game = new Game(player1, player2, NextStep.PlayerFirst);
-            player1.FieldView(player1);
+           // player1.FieldView(player1);
             player1.WriteShip();
             player2.AddNumeric();
             return game;
@@ -91,7 +93,7 @@ namespace SeaBattleWPF
                 }
                 if (!isRandom)
                 {
-                    player.FieldView(player);
+              //   player.FieldView(player);
                     player.WriteShip();
                 }
             }
@@ -126,7 +128,7 @@ namespace SeaBattleWPF
                 AddShip(numberInConsole, player, location, _random.Next(0, 2), true);
             }
 
-            player.FieldView(player);
+           // player.FieldView(player);
             player.WriteShip();
         }
 
@@ -134,16 +136,16 @@ namespace SeaBattleWPF
         {
             return game;
         }
-        public Game Move(Game game, Action<string> messageAction)
+        public Game Move(Game game)
         {
             string step = game.NextStep == NextStep.PlayerFirst ? $"Player" : "Bot";
             string message = $"Move {step}: ";
-            messageAction(message);
+           // messageAction(message);
             if (game.NextStep == NextStep.PlayerFirst)
             {
                 _botStrategy = new PlayerConsoleShot();
                 game.PrevLocation = null;
-                Move(game, _botStrategy.Shot(null), messageAction);
+                Move(game, _botStrategy.Shot(null));
             }
             else
             {
@@ -152,23 +154,23 @@ namespace SeaBattleWPF
                     _botStrategy = new RandomShot();
 
                     game.PrevLocation = _botStrategy.Shot(null);
-                    Move(game, game.PrevLocation, messageAction);
+                    Move(game, game.PrevLocation);
                 }
                 else
                 {
                     _botStrategy = new ShotTheTarget();
                     game.PrevLocation = _botStrategy.Shot(game.PrevLocation);
-                    Move(game, game.PrevLocation, messageAction);
+                    Move(game, game.PrevLocation);
                 }
 
-                messageAction($"Bot moved {game.PrevLocation.ToString()}");
+               // messageAction($"Bot moved {game.PrevLocation.ToString()}");
             }
 
 
             return game;
         }
 
-        public Game Move(Game game, Location loc, Action<string> messageAction)
+        public Game Move(Game game, Location loc)
         {
             string step = game.NextStep == NextStep.PlayerFirst ? $"Player" : "Bot";
             string message = $"Moved {step}: ";
@@ -209,9 +211,9 @@ namespace SeaBattleWPF
 
             currentPlayer.IsWin = player.ShipsInField.All(p => !p.IsLive);
 
-            game.PlayerFirst.FieldView(game.PlayerFirst);
-            game.PlayerSecond.FieldView(game.PlayerSecond, false, false);
-            messageAction(message);
+            //game.PlayerFirst.FieldView(game.PlayerFirst);
+            //game.PlayerSecond.FieldView(game.PlayerSecond, false, false);
+          //  messageAction(message);
             return game;
         }
 

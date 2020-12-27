@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SeaBattleWPF.Model;
 
-namespace SeaBattleWPF
+namespace SeaBattleWPF.ViewModel
 {
     public class Validation
     {

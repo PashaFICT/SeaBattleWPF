@@ -63,7 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BotStrategy\BotStrategy.cs" />
+    <Compile Include="BotStrategys\BotStrategy.cs" />
     <Compile Include="ViewModel\BuildGame.cs" />
     <Compile Include="Model\ConfigGame.cs" />
     <Compile Include="Model\Field.cs" />
@@ -75,10 +75,10 @@
     <Compile Include="Model\Cell.cs" />
     <Compile Include="Model\NextStep.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="BotStrategy\RandomShot.cs" />
+    <Compile Include="BotStrategys\RandomShot.cs" />
     <Compile Include="Model\Ship.cs" />
-    <Compile Include="BotStrategy\ShotNearCell.cs" />
-    <Compile Include="BotStrategy\ShotTheTarget.cs" />
+    <Compile Include="BotStrategys\ShotNearCell.cs" />
+    <Compile Include="BotStrategys\ShotTheTarget.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Validation.cs" />

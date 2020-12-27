@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SeaBattleWPF.Model;
 
-namespace SeaBattleWPF
+namespace SeaBattleWPF.BotStrategys
 {
     public class ShotTheTarget : BotStrategy
     {

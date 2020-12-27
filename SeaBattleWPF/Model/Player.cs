@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SeaBattleWPF
+namespace SeaBattleWPF.Model
 {
     public class Player
     {
@@ -24,7 +24,7 @@ namespace SeaBattleWPF
 
         public void WriteShip()
         {
-            Console.WriteLine(' ');
+           // Console.WriteLine(' ');
             int i = 0;
             foreach (Ship ship in Ships)
             {
@@ -36,11 +36,11 @@ namespace SeaBattleWPF
 
                 foreach (Cell cell in ship.Cells)
                 {
-                    Console.Write('=');
+                  //  Console.Write('=');
                 }
                 i++;
                 ship.NumberInConsole = i;
-                Console.WriteLine(" - " + i.ToString());
+               // Console.WriteLine(" - " + i.ToString());
             }
         }
 
@@ -54,7 +54,7 @@ namespace SeaBattleWPF
             }
         }
 
-        public void FieldView(Player game, bool isClear = true, bool isSecret = false)
+        /*public void FieldView(Player game, bool isClear = true, bool isSecret = false)
         {
             if (isClear)
             {
@@ -103,7 +103,7 @@ namespace SeaBattleWPF
                 }
                 Console.WriteLine();
             }
-        }
+        }*/
 
         public Ship LocationIsShip(Player game, int k, int j)
         {

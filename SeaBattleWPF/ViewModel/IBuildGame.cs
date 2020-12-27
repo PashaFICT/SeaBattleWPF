@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
-namespace SeaBattleWPF
+using SeaBattleWPF.Model;
+namespace SeaBattleWPF.ViewModel
 {
     public interface IBuildGame
     {

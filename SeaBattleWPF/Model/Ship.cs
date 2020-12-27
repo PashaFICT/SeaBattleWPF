@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SeaBattleWPF
+namespace SeaBattleWPF.Model
 {
     public class Ship
     {

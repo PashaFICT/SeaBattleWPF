@@ -3,12 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SeaBattleWPF
+namespace SeaBattleWPF.Model
 {
     public class Location
     {
         public int X;
         public int Y;
+        public Location()
+        {
+        }
         public Location(string x, string y)
         {
             if (!int.TryParse(x, out X) || !int.TryParse(y, out Y))
