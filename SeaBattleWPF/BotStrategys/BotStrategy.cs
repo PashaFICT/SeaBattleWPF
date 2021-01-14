@@ -7,6 +7,6 @@ namespace SeaBattleWPF.BotStrategys
 {
     public abstract class BotStrategy
     {
-        public abstract Location Shot(Location prevLoc);
+        public abstract int Shot(int prevLoc);
     }
 }

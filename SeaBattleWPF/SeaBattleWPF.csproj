@@ -63,9 +63,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BL\PlaceShip.cs" />
     <Compile Include="BotStrategys\BotStrategy.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuildGame.cs" />
-    <Compile Include="Model\ConfigGame.cs" />
+    <Compile Include="ConfigGame.cs" />
     <Compile Include="Model\Field.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="ViewModel\GameProcess.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\Validation.cs" />
+    <Compile Include="View\FieldView.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

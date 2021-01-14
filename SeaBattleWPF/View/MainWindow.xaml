@@ -5,61 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SeaBattleWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1200">
     <Grid>
-        <Grid ShowGridLines="True" Margin="37,30,471.6,170" x:Name="GridField">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-        </Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Height="60" Margin="478,318,0,0" VerticalAlignment="Top" Width="229" Command="{Binding Start}"/>
-        <Grid ShowGridLines="True" Margin="422,30,86.6,170" x:Name="GridField_Bot">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-        </Grid>
+        <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="376" Margin="10,68,0,0" VerticalAlignment="Top" Width="407" ItemsSource="{Binding CellsUser}" SelectedItem="{Binding CellUser}" Name="ListShip" IsEnabled="False">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Header="But">
+                        <GridViewColumn.CellTemplate>
+
+                            <DataTemplate>
+                                <Border Width="20" Height="30" BorderThickness="1">
+                                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding View}"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <Button Content="Button" HorizontalAlignment="Left" Height="60" Margin="380,466,0,0" VerticalAlignment="Top" Width="229" Command="{Binding Start}"/>
+        <Button Name="order" HorizontalAlignment="Left" Height="61" Margin="707,466,0,0" VerticalAlignment="Top" Width="138"  RenderTransformOrigin="0.214,0.608" Command="{Binding Shot}">Выстрел</Button>
+        <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="376" Margin="617,68,0,0" VerticalAlignment="Top" Width="407" ItemsSource="{Binding CellsBot}" SelectedItem="{Binding CellBot}" x:Name="ListShip_Copy">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Header="But">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Width="20" Height="30" BorderThickness="1">
+                                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding View}"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
 
     </Grid>
 </Window>

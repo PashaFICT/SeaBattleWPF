@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace SeaBattleWPF.Model
 {
     public class Field
     {
-        public Cell[][] FieldArray;
-        public Field(Cell[][] fieldarray)
+        public ObservableCollection<Cell> FieldArray;
+        public Field(ObservableCollection<Cell> fieldArray)
         {
-            FieldArray = fieldarray;
+            FieldArray = fieldArray;
         }
-        public static readonly string[] str1 = { "а", "б", "в", "г", "д", "е", "ж", "з", "и", "к" };
-        public static readonly string[] str2 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
     }
 }

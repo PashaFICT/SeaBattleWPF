@@ -8,23 +8,42 @@ namespace SeaBattleWPF.ViewModel
 {
     public class Validation
     {
-        public bool ValidationAddShip(Player game, Location loc, int isVertical, Ship ship)
+        public bool ValidationAddShip(Player game, int loc, int isVertical, Ship ship)
         {
-            if (loc.X >= ConfigGame.str1.Length || loc.Y >= ConfigGame.str2.Length || loc.X < 0 || loc.Y < 0)
+             if (loc >= 100 || loc < 0)
+             {
+                 return false;
+             }
+            if ((ship.Cells.Count() + loc % 10) >  10)
             {
                 return false;
             }
+            //foreach (Cell cells in ship.Cells)
+            //{
+                try
+                {
+                    if (game.Field.FieldArray[loc - 11].Empty == false || game.Field.FieldArray[loc - 10].Empty == false || game.Field.FieldArray[loc - 9].Empty == false || game.Field.FieldArray[loc - 1].Empty == false || game.Field.FieldArray[loc].Empty == false || game.Field.FieldArray[loc + 1].Empty == false || game.Field.FieldArray[loc + 9].Empty == false || game.Field.FieldArray[loc + 10].Empty == false || game.Field.FieldArray[loc + 11].Empty == false)
+                    {
+                        return false;
+                    }
+                }
+                catch
+                {
+
+                }
+           // }
+            
 
             if (isVertical == 1)
-            {
-                if (loc.X + ship.Cells.Count >= ConfigGame.str1.Length)
-                {
-                    return false;
-                }
-            }
+             {
+                 if (loc + ship.Cells.Count*10 > 100 )
+                 {
+                     return false;
+                 }
+             }
             else
             {
-                if (loc.Y + ship.Cells.Count >= ConfigGame.str2.Length)
+                if (loc / 10 == (loc + ship.Cells.Count) / 10)
                 {
                     return false;
                 }
@@ -33,26 +52,26 @@ namespace SeaBattleWPF.ViewModel
             {
                 for (int j = 0; j < ship.Cells.Count; j++)
                 {
-                    for (int i = 0; i < game.Field.FieldArray.Length; i++)
+                    for (int i = 0; i < game.Field.FieldArray.Count; i++)
                     {
-                        for (int k = 0; k < game.Field.FieldArray[i].Length; k++)
-                        {
-                            if (loc.X == k + j && loc.Y == i && isVertical == 0)
+                        //for (int k = 0; k < game.Field.FieldArray[i].Length; k++)
+                        //{
+                            if (loc == i && isVertical == 0)
                             {
-                                if (!game.Field.FieldArray[loc.X][loc.Y].Empty)
+                                if (!game.Field.FieldArray[loc].Empty)
                                 {
                                     return false;
                                 }
                             }
-                            else if (loc.X == k && loc.Y == i + j && isVertical == 1)
+                            else if (loc == i + j && isVertical == 1)
                             {
-                                if (!game.Field.FieldArray[loc.X][loc.Y].Empty)
+                                if (!game.Field.FieldArray[loc].Empty)
                                 {
                                     return false;
                                 }
                             }
 
-                        }
+                       // }
                     }
                 }
             }

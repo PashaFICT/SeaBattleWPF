@@ -12,7 +12,7 @@ namespace SeaBattleWPF.Model
         public Player PlayerSecond;
         public NextStep NextStep;
         public bool GameOn;
-        public Location PrevLocation;
+        public int PrevLocation;
         public Game() { }
         public Game(Player player1, Player player2, NextStep nextStep)
         {

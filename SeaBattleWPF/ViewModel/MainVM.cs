@@ -13,74 +13,70 @@ using SeaBattleWPF.Model;
 
 namespace SeaBattleWPF.ViewModel
 {
-   public class MainVM : INotifyPropertyChanged
+   public class MainVM : BaseViewModel
     {
+        //IBuildGame _buildGame;
         GameProcess gameProcess = new GameProcess();
         Game game = new Game();
-        Location location = new Location();
-        int count = 0;
-        public void Init()
+        public MainVM()
         {
             game = gameProcess.Init();
-            gameProcess.AddRandomShip(game.PlayerFirst);
             gameProcess.StartGame(game);
+            CellsUser = game.PlayerFirst.Field.FieldArray;
+            CellsBot = game.PlayerSecond.Field.FieldArray;
         }
-        public void ViewF(Player player, Grid gridField, bool isSecret=false)
+        private ObservableCollection<Cell> _cellsUser;
+        public ObservableCollection<Cell> CellsUser
         {
-            for (int i = 0; i < player.Field.FieldArray.Length; i++)
+            get { return _cellsUser; }
+            set { _cellsUser = game.PlayerFirst.Field.FieldArray; OnPropertyChanged("CellsUser"); }
+        }
+        private Cell _cellUser;
+        public Cell CellUser
+        {
+            get { return _cellUser; }
+            set { _cellUser = value; Test(value); OnPropertyChanged("CellUser"); }
+        }
+        private ObservableCollection<Cell> _cellsBot;
+        public ObservableCollection<Cell> CellsBot
+        {
+            get { return _cellsBot; }
+            set { _cellsBot = game.PlayerSecond.Field.FieldArray; OnPropertyChanged("CellsBot"); }
+        }
+        private Cell _cellBot;
+        public Cell CellBot
+        {
+            get { return _cellBot; }
+            set { _cellBot = value; Test(value); OnPropertyChanged("CellBot"); }
+        }
+        private void Test(Cell cell)
+        {
+            string step = game.NextStep == NextStep.PlayerFirst ? $"Player" : "Bot";
+            //  int num = Convert.ToInt32(obj1) - 1;
+            //EnableButton(num+1);
+            //if (game.NextStep == NextStep.PlayerSecond)
+            //{
+            //    game = gameProcess.Move(game);
+            //    // ViewF(game.PlayerSecond, GridField_Bot);
+            //     game.NextStep = NextStep.PlayerFirst;
+            //}
+            //else
+            //{
+            //    game = gameProcess.Move(game, cell.number);
+            //    //ViewF(game.PlayerFirst, GridField);
+            //    game.NextStep = NextStep.PlayerSecond;
+            //}
+            game = gameProcess.Move(game, cell.number);
+            // ViewF(game.PlayerSecond, GridField_Bot);
+            if (game.PlayerFirst.IsWin || game.PlayerSecond.IsWin)
             {
-                for (int j=0; j< player.Field.FieldArray[i].Length; j++)
-                {
-                    if (player.Field.FieldArray[i][j].IsShot)
-                    {
-                        Ship ship = LocationIsShip(player, j, i);
-                        if (ship != null)
-                        {
-                            player.Field.FieldArray[i][j].View = 'X';
-                        }
-                        else
-                        {
-                            player.Field.FieldArray[i][j].View = '+';
-                        }
-                    }
-
-                    else if (player.Field.FieldArray[i][j].Empty || isSecret)
-                    {
-                        player.Field.FieldArray[i][j].View = '0';
-                    }
-                    foreach (Button but in gridField.Children)
-                    {
-                        if (but.CommandParameter.ToString() == Index(i, j).ToString())
-                        {
-                            but.Content = player.Field.FieldArray[i][j].View;
-                        }
-
-                    }
-                }
-                
-                
+                MessageBox.Show("Win " + step);
             }
         }
-        public int Index(int i, int j)
-        {
-            int index=0;
-            if(i == 0)
-            {
-                index = j + 1;
-            }
-            index = i * 10 + j + 1;
-            return index;
-        }
-        public Location IndexLoc(int num)
-        {
-            location.X = num / 10;
-            location.Y = num % 10;
-            return location;
-        }
-        public Ship LocationIsShip(Player game, int k, int j)
+        public Ship LocationIsShip(Player player, int k, int j)
         {
             Ship ship = null;
-            foreach (Ship item in game.ShipsInField)
+            foreach (Ship item in player.ShipsInField)
             {
                 int count = 0;
                 foreach (ShipCell cell in item.Cells)
@@ -110,9 +106,7 @@ namespace SeaBattleWPF.ViewModel
 
             return ship;
         }
-        public static Grid GridField;
-        public static Grid GridField_Bot;
-
+        int i = 23;
         private RelayCommand addCommand;
         public RelayCommand Start
         {
@@ -121,16 +115,13 @@ namespace SeaBattleWPF.ViewModel
                 return addCommand ??
                   (addCommand = new RelayCommand(obj =>
                   {
-                      Init();
-                      ViewF(game.PlayerFirst, GridField);
-                      ViewF(game.PlayerSecond, GridField_Bot);
-                      MessageBox.Show("Start");
+                      //int i = 23;
+                      game.PlayerFirst.Field.FieldArray[i].View = "8";
+                      i++;
                   }));
             }
 
         }
-
-
         private RelayCommand removeCommand;
         public RelayCommand RemoveCommand
         {
@@ -141,9 +132,9 @@ namespace SeaBattleWPF.ViewModel
                   {
                       string step = game.NextStep == NextStep.PlayerFirst ? $"Player" : "Bot";
                       int num = Convert.ToInt32(obj)-1;
-                      IndexLoc(num);
-                      game = gameProcess.Move(game, location);
-                      ViewF(game.PlayerFirst, GridField);
+                      
+                    //  game = gameProcess.Move(game, IndexLoc(num));
+                      //ViewF(game.PlayerFirst, GridField);
                       if (game.PlayerFirst.IsWin || game.PlayerSecond.IsWin)
                       {
                           MessageBox.Show("Win " + step);
@@ -158,13 +149,25 @@ namespace SeaBattleWPF.ViewModel
             get
             {
                 return shot ??
-                  (shot = new RelayCommand(obj =>
+                  (shot = new RelayCommand(obj1 =>
                   {
                       string step = game.NextStep == NextStep.PlayerFirst ? $"Player" : "Bot";
-                      int num = Convert.ToInt32(obj) - 1;
-                      IndexLoc(num);
-                      game = gameProcess.Move(game, location);
-                      ViewF(game.PlayerSecond, GridField_Bot);
+                      int num = Convert.ToInt32(obj1) - 1;
+                      //EnableButton(num+1);
+                      if (game.NextStep == NextStep.PlayerSecond)
+                    {
+                          //game = gameProcess.Move(game);
+                         // ViewF(game.PlayerSecond, GridField_Bot);
+                          game.NextStep = NextStep.PlayerFirst;
+                    }
+                    else
+                      {
+                          //game = gameProcess.Move(game, IndexLoc(num));
+                          //ViewF(game.PlayerFirst, GridField);
+                          game.NextStep = NextStep.PlayerSecond;
+                      }
+                      //game = gameProcess.Move(game, IndexLoc(num));
+                     // ViewF(game.PlayerSecond, GridField_Bot);
                       if (game.PlayerFirst.IsWin || game.PlayerSecond.IsWin)
                       {
                           MessageBox.Show("Win " + step);
@@ -172,23 +175,6 @@ namespace SeaBattleWPF.ViewModel
                   }
                  ));
             }
-        }
-
-        public int SelectedPhone
-        {
-            get { return count; }
-            set
-            {
-                OnPropertyChanged("SelectedPhone");
-            }
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
     }

@@ -33,11 +33,6 @@ namespace SeaBattleWPF.Model
                     i++;
                     continue;
                 }
-
-                foreach (Cell cell in ship.Cells)
-                {
-                  //  Console.Write('=');
-                }
                 i++;
                 ship.NumberInConsole = i;
                // Console.WriteLine(" - " + i.ToString());
@@ -105,7 +100,7 @@ namespace SeaBattleWPF.Model
             }
         }*/
 
-        public Ship LocationIsShip(Player game, int k, int j)
+        public Ship LocationIsShip(Player game, int i)
         {
             Ship ship = null;
             foreach (Ship item in game.ShipsInField)
@@ -113,11 +108,11 @@ namespace SeaBattleWPF.Model
                 int count = 0;
                 foreach (ShipCell cell in item.Cells)
                 {
-                    if (cell.Location == null)
-                    {
-                        continue;
-                    }
-                    if (cell.Location.X == j && cell.Location.Y == k)
+                    //if (cell.number == null)
+                    //{
+                    //    continue;
+                    //}
+                    if (cell.number == i)
                     {
                         item.IsWarning = true;
                         cell.IsWarning = true;
