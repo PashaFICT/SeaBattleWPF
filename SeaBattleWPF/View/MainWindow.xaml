@@ -15,7 +15,7 @@
             </ListView.ItemsPanel>
             <ListView.View>
                 <GridView >
-                    <GridViewColumn Header="But">
+                    <GridViewColumn>
                         <GridViewColumn.CellTemplate>
 
                             <DataTemplate>
@@ -29,8 +29,7 @@
             </ListView.View>
 
         </ListView>
-        <Button Content="Button" HorizontalAlignment="Left" Height="60" Margin="380,466,0,0" VerticalAlignment="Top" Width="229" Command="{Binding Start}"/>
-        <Button Name="order" HorizontalAlignment="Left" Height="61" Margin="707,466,0,0" VerticalAlignment="Top" Width="138"  RenderTransformOrigin="0.214,0.608" Command="{Binding Shot}">Выстрел</Button>
+        <Button Content="Старт" HorizontalAlignment="Left" Height="60" Margin="380,466,0,0" VerticalAlignment="Top" Width="229" Command="{Binding Start}"/>
         <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="376" Margin="617,68,0,0" VerticalAlignment="Top" Width="407" ItemsSource="{Binding CellsBot}" SelectedItem="{Binding CellBot}" x:Name="ListShip_Copy">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -39,7 +38,7 @@
             </ListView.ItemsPanel>
             <ListView.View>
                 <GridView >
-                    <GridViewColumn Header="But">
+                    <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Border Width="20" Height="30" BorderThickness="1">

@@ -9,9 +9,6 @@ namespace SeaBattleWPF.Model
     {
         public int X;
         public int Y;
-        public Location()
-        {
-        }
         public Location(string x, string y)
         {
             if (!int.TryParse(x, out X) || !int.TryParse(y, out Y))
@@ -25,7 +22,6 @@ namespace SeaBattleWPF.Model
             X = x;
             Y = y;
         }
-
         public override string ToString()
         {
             return $"{X} - {Y}";

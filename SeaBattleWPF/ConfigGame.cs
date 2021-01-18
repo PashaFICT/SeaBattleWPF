@@ -10,10 +10,10 @@ namespace SeaBattleWPF
         public static int CountOfTwo = 3;
         public static int CountOfThree = 2;
         public static int CountOfFour = 1;
-        public static readonly bool isSecret = true;
+        public static readonly bool isSecret = false;
         public static readonly string CellEmpty = "*";
         public static readonly string CellWarning = "X";
-        public static readonly string CellShot = "+";
+        public static readonly string CellShot = "0";
         public static readonly string CellShip = "|";
     }
 }

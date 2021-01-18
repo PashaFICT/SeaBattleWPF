@@ -24,7 +24,6 @@ namespace SeaBattleWPF.Model
 
         public void WriteShip()
         {
-           // Console.WriteLine(' ');
             int i = 0;
             foreach (Ship ship in Ships)
             {
@@ -35,7 +34,6 @@ namespace SeaBattleWPF.Model
                 }
                 i++;
                 ship.NumberInConsole = i;
-               // Console.WriteLine(" - " + i.ToString());
             }
         }
 
@@ -49,57 +47,6 @@ namespace SeaBattleWPF.Model
             }
         }
 
-        /*public void FieldView(Player game, bool isClear = true, bool isSecret = false)
-        {
-            if (isClear)
-            {
-                Console.Clear();
-            }
-            else
-            {
-                Console.WriteLine();
-            }
-            Console.Write("  ");
-            for (int i = 0; i < game.Field.FieldArray.Length; i++)
-            {
-                Console.Write(ConfigGame.str1[i].ToString() + ' ');
-            }
-            Console.WriteLine();
-            for (int k = 0; k < game.Field.FieldArray.Length; k++)
-            {
-                if (k < 9)
-                {
-                    Console.Write(ConfigGame.str2[k].ToString() + ' ');
-                }
-                else
-                {
-                    Console.Write(ConfigGame.str2[k].ToString());
-                }
-                for (int j = 0; j < game.Field.FieldArray[k].Length; j++)
-                {
-                    if (game.Field.FieldArray[k][j].IsShot)
-                    {
-                        Ship ship = LocationIsShip(game, j, k);
-                        if (ship != null)
-                        {
-                            game.Field.FieldArray[k][j].View = 'X';
-                        }
-                        else
-                        {
-                            game.Field.FieldArray[k][j].View = '+';
-                        }
-                    }
-
-                    else if (game.Field.FieldArray[k][j].Empty || isSecret)
-                    {
-                        game.Field.FieldArray[k][j].View = '-';
-                    }
-                    Console.Write(game.Field.FieldArray[k][j].View + " ");
-                }
-                Console.WriteLine();
-            }
-        }*/
-
         public Ship LocationIsShip(Player game, int i)
         {
             Ship ship = null;
@@ -108,10 +55,6 @@ namespace SeaBattleWPF.Model
                 int count = 0;
                 foreach (ShipCell cell in item.Cells)
                 {
-                    //if (cell.number == null)
-                    //{
-                    //    continue;
-                    //}
                     if (cell.number == i)
                     {
                         item.IsWarning = true;

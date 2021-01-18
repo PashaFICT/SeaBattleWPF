@@ -15,33 +15,51 @@ namespace SeaBattleWPF.BotStrategys
 
               if (isVertical == 1)
               {
-                  if (prevLoc == 9)
+                  if (prevLoc/10 == 9)
                   {
-                    //return new Location(prevLoc - 1, prevLoc);
-                    return prevLoc-1;
+                    return prevLoc - 10;
                   }
-                  if (prevLoc == 0)
+                 else if (prevLoc / 10 == 0)
                   {
-                    //return new Location(1, prevLoc);
-                    return prevLoc;
+                    return prevLoc + 10;
                   }
-
-                return 5;//new Location(IsUp == 1 ? prevLoc.X + 1 : prevLoc.X - 1, prevLoc.Y);
+                  else
+                {
+                    if (IsUp == 1)
+                    {
+                        prevLoc += 10;
+                    }
+                    else
+                    {
+                        prevLoc -= 10;
+                    }
+                }
+                return prevLoc;
               }
-              //else
-              //{
-              //    if (prevLoc == 9)
-              //    {
-              //        return new Location(prevLoc.X, prevLoc.Y - 1);
-              //    }
-              //    if (prevLoc == 0)
-              //    {
-              //        return new Location(prevLoc.X, 1);
-              //    }
+            else
+            {
+                if (prevLoc % 10 == 9)
+                {
+                    return prevLoc - 1;
+                }
+                else if (prevLoc % 10 == 0)
+                {
+                    return prevLoc + 1;
+                }
+                else
+                {
+                    if (IsUp == 1)
+                    {
+                        prevLoc += 1;
+                    }
+                    else
+                    {
+                        prevLoc -= 1;
+                    }
+                }
+                return prevLoc;
 
-              //    return new Location(prevLoc.X, IsUp == 1 ? prevLoc.Y + 1 : prevLoc.Y - 1);
-              //}
-            return 5;//new Location(prevLoc.X, IsUp == 1 ? prevLoc.Y + 1 : prevLoc.Y - 1);
+            }
         }
     }
 }

@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SeaBattleWPF.View;
 
 namespace SeaBattleWPF
 {
@@ -26,10 +25,6 @@ namespace SeaBattleWPF
         {
             InitializeComponent();
             DataContext = new MainVM();
-            FieldView fieldView = new FieldView();
-           // fieldView.CreateField(GridField, GridField_Bot);
-            //MainVM.GridField = GridField;
-            //MainVM.GridField_Bot = GridField_Bot;
         }
         
 
