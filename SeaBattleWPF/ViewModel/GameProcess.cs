@@ -12,7 +12,7 @@ namespace SeaBattleWPF.ViewModel
 {
     public class GameProcess
     {
-       IBuildGame _buildGame;
+        IBuildGame _buildGame;
         Validation valid = new Validation();
         Random _random = new Random();
         BotStrategy _botStrategy = new RandomShot();
@@ -82,10 +82,12 @@ namespace SeaBattleWPF.ViewModel
                                 if (ConfigGame.isSecret && game.PlayerSecond.GuidPlayerId == player.GuidPlayerId)
                                 {
                                     shippCell.View = ConfigGame.CellEmpty;
+                                    shippCell.Empty = false;
                                 }
                                 else
                                 {
                                     shippCell.View = ConfigGame.CellShip;
+                                    shippCell.Empty = false;
                                 }
                                   
                              }
@@ -93,7 +95,8 @@ namespace SeaBattleWPF.ViewModel
                              {
                                      shippCell.number = i + m;
                                      player.Field.FieldArray[i + m] = shippCell;
-                                 shippCell.View = ConfigGame.CellShip;
+                                     shippCell.View = ConfigGame.CellShip;
+                                     shippCell.Empty = false;
                              }
                               m++;
                              p += 10;
@@ -138,10 +141,6 @@ namespace SeaBattleWPF.ViewModel
             player.WriteShip();
         }
 
-        public Game DeleteShip(Guid ShipID, Guid PlayerID, Game game)
-        {
-            return game;
-        }
         public Game Move(Game game, Cell cell)
         {
             string step = game.NextStep == NextStep.PlayerFirst ? $"Player" : "Bot";

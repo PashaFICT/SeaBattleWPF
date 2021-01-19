@@ -8,7 +8,7 @@ namespace SeaBattleWPF.ViewModel
 {
     public class Validation
     {
-        public bool ValidationAddShip(Player game, int loc, int isVertical, Ship ship)
+        public bool ValidationAddShip(Player player, int loc, int isVertical, Ship ship)
         {
              if (loc >= 100 || loc < 0)
              {
@@ -18,29 +18,57 @@ namespace SeaBattleWPF.ViewModel
             {
                 return false;
             }
-            //foreach (Cell cells in ship.Cells)
-            //{
+            foreach (Cell cell in ship.Cells)
+            {
                 try
                 {
-                    if (game.Field.FieldArray[loc - 11].Empty == false || game.Field.FieldArray[loc - 10].Empty == false || game.Field.FieldArray[loc - 9].Empty == false || game.Field.FieldArray[loc - 1].Empty == false || game.Field.FieldArray[loc].Empty == false || game.Field.FieldArray[loc + 1].Empty == false || game.Field.FieldArray[loc + 9].Empty == false || game.Field.FieldArray[loc + 10].Empty == false || game.Field.FieldArray[loc + 11].Empty == false)
+                    if (player.Field.FieldArray[cell.number].Empty == false)// || player.Field.FieldArray[cell.number - 11].Empty == false)
+                    {
+                        return false;
+                    }
+                    if(player.Field.FieldArray[cell.number - 11].Empty == false)
                     {
                         return false;
                     }
                 }
                 catch
                 {
-
+                    return false;
                 }
-           // }
-            
+            }
+            //foreach (Cell cell in ship.Cells)
+            //{
+            //    try
+            //    {
+            //        if (player.Field.FieldArray[cell.number - 11].Empty == false)
+            //        {
+            //            return false;
+            //        }
+            //    }
+            //    catch
+            //    {
+            //        return false;
+            //    }
+            //}
+            //try
+            //{
+            //    if (player.Field.FieldArray[loc - 11].Empty == false || player.Field.FieldArray[loc - 10].Empty == false || player.Field.FieldArray[loc - 9].Empty == false || player.Field.FieldArray[loc - 1].Empty == false || player.Field.FieldArray[loc + 1].Empty == false || player.Field.FieldArray[loc + 9].Empty == false || player.Field.FieldArray[loc + 10].Empty == false || player.Field.FieldArray[loc + 11].Empty == false)
+            //    {
+            //        return false;
+            //    }
+            //}
+            //catch
+            //{
+            //return false;
+            //}
 
             if (isVertical == 1)
-             {
+            {
                  if (loc + ship.Cells.Count*10 > 100 )
                  {
                      return false;
                  }
-             }
+            }
             else
             {
                 if (loc / 10 == (loc + ship.Cells.Count) / 10)
@@ -52,26 +80,22 @@ namespace SeaBattleWPF.ViewModel
             {
                 for (int j = 0; j < ship.Cells.Count; j++)
                 {
-                    for (int i = 0; i < game.Field.FieldArray.Count; i++)
+                    for (int i = 0; i < player.Field.FieldArray.Count; i++)
                     {
-                        //for (int k = 0; k < game.Field.FieldArray[i].Length; k++)
-                        //{
                             if (loc == i && isVertical == 0)
                             {
-                                if (!game.Field.FieldArray[loc].Empty)
+                                if (!player.Field.FieldArray[loc].Empty)
                                 {
                                     return false;
                                 }
                             }
                             else if (loc == i + j && isVertical == 1)
                             {
-                                if (!game.Field.FieldArray[loc].Empty)
+                                if (!player.Field.FieldArray[loc].Empty)
                                 {
                                     return false;
                                 }
                             }
-
-                       // }
                     }
                 }
             }
@@ -81,11 +105,6 @@ namespace SeaBattleWPF.ViewModel
             }
 
             return true;
-        }
-        public bool TryValidationGame(Field field, List<Ship> ships)
-        {
-            bool valid = true;
-            return valid;
         }
     }
 }

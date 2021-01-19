@@ -47,10 +47,10 @@ namespace SeaBattleWPF.Model
             }
         }
 
-        public Ship LocationIsShip(Player game, int i)
+        public Ship LocationIsShip(Player player, int i)
         {
             Ship ship = null;
-            foreach (Ship item in game.ShipsInField)
+            foreach (Ship item in player.ShipsInField)
             {
                 int count = 0;
                 foreach (ShipCell cell in item.Cells)
@@ -60,10 +60,6 @@ namespace SeaBattleWPF.Model
                         item.IsWarning = true;
                         cell.IsWarning = true;
                         ship = item;
-
-                    }
-                    if (cell.IsWarning)
-                    {
                         count++;
                     }
                 }

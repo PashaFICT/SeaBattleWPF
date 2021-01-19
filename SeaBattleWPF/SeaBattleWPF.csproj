@@ -72,7 +72,6 @@
     <Compile Include="ViewModel\GameProcess.cs" />
     <Compile Include="ViewModel\IBuildGame.cs" />
     <Compile Include="Exceptions\InputInvalidParametrException.cs" />
-    <Compile Include="Model\Location.cs" />
     <Compile Include="Model\Cell.cs" />
     <Compile Include="Model\NextStep.cs" />
     <Compile Include="Model\Player.cs" />

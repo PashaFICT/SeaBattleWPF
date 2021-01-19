@@ -17,13 +17,6 @@ namespace SeaBattleWPF.ViewModel
     {
         GameProcess gameProcess = new GameProcess();
         Game game = new Game();
-        public MainVM()
-        {
-            //game = gameProcess.Init();
-            //gameProcess.StartGame(game);
-            //CellsUser = game.PlayerFirst.Field.FieldArray;
-            //CellsBot = game.PlayerSecond.Field.FieldArray;
-        }
         private ObservableCollection<Cell> _cellsUser;
         public ObservableCollection<Cell> CellsUser
         {
@@ -56,39 +49,7 @@ namespace SeaBattleWPF.ViewModel
                 MessageBox.Show(game.PlayerFirst.IsWin ? "Player is win" : "Bot is win");
             }
         }
-        public Ship LocationIsShip(Player player, int k, int j)
-        {
-            Ship ship = null;
-            foreach (Ship item in player.ShipsInField)
-            {
-                int count = 0;
-                foreach (ShipCell cell in item.Cells)
-                {
-                    if (cell.Location == null)
-                    {
-                        continue;
-                    }
-                    if (cell.Location.X == j && cell.Location.Y == k)
-                    {
-                        item.IsWarning = true;
-                        cell.IsWarning = true;
-                        ship = item;
-
-                    }
-                    if (cell.IsWarning)
-                    {
-                        count++;
-                    }
-                }
-
-                if (count == item.Cells.Count)
-                {
-                    item.IsLive = false;
-                }
-            }
-
-            return ship;
-        }
+        
         private RelayCommand addCommand;
         public RelayCommand Start
         {
@@ -105,32 +66,5 @@ namespace SeaBattleWPF.ViewModel
             }
 
         }
-        //private RelayCommand shot;
-        //public RelayCommand Shot
-        //{
-        //    get
-        //    {
-        //        return shot ??
-        //          (shot = new RelayCommand(obj1 =>
-        //          {
-        //              string step = game.NextStep == NextStep.PlayerFirst ? $"Player" : "Bot";
-        //              int num = Convert.ToInt32(obj1) - 1;
-        //              if (game.NextStep == NextStep.PlayerSecond)
-        //              {
-        //                  game.NextStep = NextStep.PlayerFirst;
-        //              }
-        //            else
-        //            {
-        //                  game.NextStep = NextStep.PlayerSecond;
-        //            }
-        //              if (game.PlayerFirst.IsWin || game.PlayerSecond.IsWin)
-        //              {
-        //                  MessageBox.Show("Win " + step);
-        //              }
-        //          }
-        //         ));
-        //    }
-        //}
-
     }
 }
